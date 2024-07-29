@@ -47,7 +47,92 @@ This core supports the following processors - essentially every "classic" tinyAV
 * [ATtiny48, 88](https://github.com/SpenceKonde/ATTinyCore/blob/v2.0.0-devThis-is-the-head-submit-PRs-against-this/avr/extras/ATtiny_x8.md) (With or without Optiboot or Micronucleus bootloader) - a 32-pin (or 28-pin in DIP) tiny-ified version of the ATmega x8-series. Hardware TWI and SPI, lots of pins, and cheap - but no crystal, no hardware serial, and only timer1 can do PWM (at least it's a normal timer1). It should come as no surprise that the ADC the same boring 8-channel single-ended one the m328p has. Available with Micronucleus support as the "MH-tiny" or "MHET tiny" on eBay and Aliexpress.
 * [ATtiny828](https://github.com/SpenceKonde/ATTinyCore/blob/v2.0.0-devThis-is-the-head-submit-PRs-against-this/avr/extras/ATtiny_828.md) (With or without Optiboot bootloader) - A 32-pin (28 I/O pin) part with hardware serial and an analog input on every pin - and a mysterious and tragic history that left it far less powerful than it could have been.
 * [ATtiny2313, 4313](https://github.com/SpenceKonde/ATTinyCore/blob/v2.0.0-devThis-is-the-head-submit-PRs-against-this/avr/extras/ATtiny_x313.md) (no bootloader) - An expensive, ancient chip with tiny amount of flash. For a long time it was the only tinyAVR with a USART. There are far better choices now.
-* [ATtiny43U](https://github.com/SpenceKonde/ATTinyCore/blob/v2.0.0-devThis-is-the-head-submit-PRs-against-this/avr/extras/ATtiny_43.md) (no bootloader) - An otherwise rather dismal part: 16 I/O pins, but only 2 PWM channels, timer1 is 8-bit not 16, and it only has a few ADC channels - with one unique feature: *an on-chip boost converter* allowing operation from a single, partly discharged, alkaline battery. Unlike using an external boost converter, this can use it's knowledge of the chip state to inform the boost converter's tradeoff between power consumption and accurate regulation, saving significant power by letting running the DC-DC converter intermittantlty while the part is sleeping, allowing the voltage to droop nearly to the minimum voltage to retain data in RAM, instead of a stable 3V, and also lowers part count. It still requires an external schottky diode, inductor, and capacitor.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*
+
+* [ATtiny43U](https://github.com/SpenceKonde/ATTinyCore/blob/v2.0.0-devThis-is-the-head-submit-PRs-against-this/avr/extras/ATtiny_43.md) (no bootloader) - An otherwise rather dismal part: 16 I/O pins, but only 2 PWM channels, timer1 is 8-bit not 16, and it only has a fe
+* w ADC channels - with one unique feature: *an on-chip boost converter* allowing operation from a single, partly discharged, alkaline battery. Unlike using an external boost converter, this can use it's knowledge of the chip state to inform the boost converter's tradeoff between power consumption and accurate regulation, saving significant power by letting running the DC-DC converter intermittantlty while the part is sleeping, allowing the voltage to droop nearly to the minimum voltage to retain data in RAM, instead of a stable 3V, and also lowers part count. It still requires an external schottky diode, inductor, and capacitor.
 
 Variants of these are also supported (such as the ATtiny1634R, ATtiny2313A or ATtiny85V)
 
@@ -56,7 +141,9 @@ ATTinyCore supports classic ATtiny parts. It does not support any other AVR devi
 * [tinyAVR 0/1/2-series](https://github.com/SpenceKonde/megaTinyCore/) Modern tinyAVR (with 0, 1, or 2 as next-to-last digit) are supported by my megaTinyCore instead. They are totally different in every way except the "t-word" in the name, and many of them have a peripheral selection to make most classic AVRs turn gteen with envy (like a 3227 or 3226's peripera;s beat the stuffing out of many classic AVR parts, including the 328pb
 * [ATtiny13/13A](https://github.com/MCUdude/MicroCore/) are supported by MicroCore by @MCUdude - 2k of flash is the lower cutoff for ATTinyCore.
 * The ATtiny28L is not supported by any Arduino core. It is older than the hills, weirder than quantum physics... AND IT DOESN'T HAVE RAM! IT ONLY HAS REGISTERS! Put it back into the museum case where you got it before the security guards notice it missing from the "prehistoric man and computing" exhibit.
-* ATtiny 4/5/10/11 and the 10x tinyAVRs, or any other "AVRrc" (reduced core) parts/ these combine minuscule memory sizes with a gimped CPU. [Try this core](https://github.com/technoblogy/attiny10core) if you are a masochist and extremely space constrained. The core has to cut significant parts of the API in order to fit. These parts are kinda lousy - there is a point when trying to use smaller and smaller microcontrollers stops being fun and starts being just annoying. These parts, for example. With the exception of the ATtiny28L, and some discontinued parts not included on this list, any other AVR more capable that these things, and it's not like the discount for losing all that functionality is worth it.
+
+* All AVR devices using the "Reduced Core" version of the processor (This includes the ATtiny 4/5/10/11, the tinyAVR 10x, and the tinyAVR 20 and 40). These parts are ill-suited to use with Arduino; their tiny flash and memory cannot handle the overhead of the arduino abstractions. The parts overall are thoroughly unimpressive devices: The peripherals are primitive, the memory is tiny, the processor has had half of it's general purpose working registers removed, and many of it's instructions are slower to execute than a normal AVR.
+* Despite the profound sacrifices made ostensibly to reduce the cost of the chip, they seem to have have little savings to show for it. Don't take my word for it, though - you can go try out [this core](https://github.com/technoblogy/attiny10core), which gives you an idea of what features can be fit into an arduino core for AVRrc (essentially nothing). 
 * Anything with "ATmega" in the name - you want [one of MCUDude's cores](https://github.com/MCUdude/) - he has one for almost every ATmega part. '
 * The ATmegaXXcN and XXmN where X is the flash size and N is a small number. There is no core supporting these rarely seen or discussed classic AVRs. The c's are a follow-on to the ATCAN series (the older CAN parts are supported by some of MCUDude's cores) and the m series the follow-on to the PWM-centric parts of the same vintage (The more recent modern AVRs - namely the tinyAVR 1-series and Dx-series - have a Type D timer, which was clearly inspired by the PWM controller on those parts, making it interesting to those who study feature evolution semiconductors).
 * AVR Dx-series (AVR128DA64, etc) - [the crown jewel of the AVR product line](https://github.com/SpenceKonde/), supported by my DxCore.
