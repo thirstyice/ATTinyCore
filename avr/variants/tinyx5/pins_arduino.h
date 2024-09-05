@@ -155,8 +155,8 @@ static const uint8_t  A3 =  ADC_CH(3);
 #define INTERNAL             INTERNAL1V1   /* deprecated */
 /* Special Analog Channels */
 #define ADC_TEMPERATURE     ADC_CH(0x0F)
-#define ADC_INTERNAL1V1     ADC_CH(0x0D)
-#define ADC_GROUND          ADC_CH(0x0C)
+#define ADC_INTERNAL1V1     ADC_CH(0x0C)
+#define ADC_GROUND          ADC_CH(0x0D)
 
 /* Differential Analog Channels */
 #define DIFF_A2_A2_1X       ADC_CH(0x04)
