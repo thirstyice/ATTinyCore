@@ -174,7 +174,7 @@ Mironucleus used: Micronucleus boards are locked to the crystal, no oscillator c
 | Temperature Slope      | FLASHEND       |
 
 ### Purchasing ATtiny167 Boards
-I (Spence Konde / Dr. Azzy) sell ATtiny167 boards through my Tindie store - your purchases support the continued development of this core. A new version is now available. In order to fit in the same form factor as my other tinyAVR breakout boards, these use the TSSOP-20 package version insteaad of the bulky SOIC-20.
+I (Spence Konde / Dr. Azzy) sell ATtiny167 boards through my Tindie store - your purchases support the continued development of this core. A new version is now available. In order to fit in the same form factor as my other tinyAVR breakout boards, these use the TSSOP-20 package version instead of the bulky SOIC-20.
 * Azduino Tiny167 Pro - bare board - pending verification of functionality.
 * Azduino Tiny167 Pro - pending verification and assembly.
 * Ultramini - fits a DIP-24 socket - pending verification of functionality.
