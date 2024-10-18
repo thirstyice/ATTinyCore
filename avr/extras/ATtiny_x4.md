@@ -63,6 +63,37 @@ Example of a "guard" against wrong pin mapping:
 
 All pin mapping options assume that PB2 has the LED (bootloaders will blink that pin, and LED_BUILTIN is defined as PIN_PB2), unless it's a micronucleus configuration with D+ on PB2, in which case it will instead use PB0.
 
+#### Changing pin mapping via PlatformIO
+
+If you're using [PlatformIO](https://platformio.org/), extra steps must be taken to change your pinmapping.
+
+By default, when using "attiny84" as your board on PlatformIO, it uses to the CCW pin mapping. PlatformIO does not have a default menu to simply select your desired pin mapping, and (until when and if a CW mapping for the x4 board is added), you must manually specify the CW board variant in your project's `platformio.ini` file. 
+
+In VSCode, you can add this via PlatformIO's inspector. Open your Project, and select Configure. Select your working environment (likely either called "attiny84", "default", or simply unnamed). In the Working Configuration section, in the New Option field, input `board_build.variant`, and add the new field. It will appear under Custom Options at the bottom of the page. Enter `tinyX4_reverse` in this field, and Save.
+
+Or, you can specify the variant manually in your `platformio.ini` file. By default your `platformio.ini` file will look simliar to this:
+
+```
+[env:attiny84]
+platform = atmelavr
+board = attiny84
+framework = arduino
+```
+
+Simply add a line specifying the board build variant, and you're good to go!
+
+```
+[env:attiny84]
+platform = atmelavr
+board = attiny84
+framework = arduino
+board_build.variant = tinyX4_reverse
+```
+
+You can test this using the method above. Any code under `#ifdef PINMAPPING_CW` will now compile, and `#ifdef PINMAPPING_CCW` will not.
+
+Other variants of ATtiny boards can be found (in Windows, at least - for other OSes, navigate to the relevant install directory) at `C:\Users\USERNAME\.platformio\packages\framework-arduino-avr-attiny\variants\`
+
 ### PWM frequency
 TC0 is always run in Fast PWM mode: We use TC0 for millis, and phase correct mode can't be used on the millis timer - you need to read the count to get micros, but that doesn't tell you the time in phase correct mode because you don't know if it's upcounting or downcounting in phase correct mode.
 
